@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
@@ -11,13 +12,19 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var button: Button
     lateinit var textInfo: TextView
+    lateinit var idName: EditText
+    lateinit var idDate: EditText
+    lateinit var idPhone: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var button = findViewById<Button>(R.id.button)
-        var textInfo = findViewById<TextView>(R.id.textView)
+         button = findViewById<Button>(R.id.button)
+         textInfo = findViewById<TextView>(R.id.textView)
+        idName = findViewById(R.id.idName)
+        idDate = findViewById(R.id.idDate)
+        idPhone = findViewById(R.id.idPhone)
 
         button.setOnClickListener {
             textInfo.setText("I have been clicked!")
@@ -30,11 +37,17 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("save_text", textInfo.text.toString())
+        outState.putString("id_name", idName.text.toString())
+        outState.putString("id_date", idDate.text.toString())
+        outState.putString("id_phone", idPhone.text.toString())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         textInfo.setText(savedInstanceState.getString("saved_text"))
+        idName.setText(savedInstanceState.getString("id_name"))
+        idDate.setText(savedInstanceState.getString("id_date"))
+        idPhone.setText(savedInstanceState.getString("id_phone"))
     }
 
     override fun onStart() {
